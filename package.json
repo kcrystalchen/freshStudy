@@ -1,23 +1,41 @@
 {
   "name": "freshstudy",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "freshstudy",
   "main": "index.js",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "express": "^4.17.1",
     "path": "^0.12.7",
     "pg": "^7.12.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-spring": "^8.0.27"
+    "react-redux": "^7.1.1",
+    "react-spring": "^8.0.27",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "node-sass": "^4.13.0",
     "nodemon": "^1.19.4",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "url-loader": "^2.2.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
   },
   "scripts": {
+    "start": "nodemon server/server.js",
+    "build": "export NODE_ENV=production; webpack",
+    "dev": "export NODE_ENV=development; concurrently \"webpack-dev-server --hotOnly\" \"nodemon server/server.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "freshStudy Group Inc.",

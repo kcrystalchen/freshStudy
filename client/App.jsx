@@ -1,9 +1,8 @@
 import React from 'react';
+import Wrapper from './containers/MainContainer';
 
-export default () => {
-  return (
-    <div id='app'>
-      Fresh Study
-    </div>
-  );
-};
+export default () => (
+  <div id='app'>
+    <Wrapper />
+  </div>
+);
