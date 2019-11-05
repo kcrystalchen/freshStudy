@@ -13,3 +13,27 @@ app.use('/', express.static(path.resolve(__dirname, '../client/assets')));
 app.get('/', (res, req) => {
     res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'))
 });
+
+// get questions request 
+app.get('/questions', databaseController.getQuestions, (req, res) => {
+
+});
+
+// post answers request
+app.post('/questions', databaseController.postAnswers, (req, res) => {
+
+});
+
+
+
+app.use('*', (req, res, next) => {
+    res.status(404).send('File is not found, Route is wrong')
+});
+
+app.use((error, req, res, next) => {
+    res.status(500).send('Global error handler triggered')
+});
+
+app.listen(PORT, () => {
+    console.log(`Listening port ${PORT} ^0^`);
+});
