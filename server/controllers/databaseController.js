@@ -2,7 +2,7 @@ const pool = require('../models/databaseModel');
 
 module.exports = {
   getQuestions(req, res, next) {
-    const queryText = `SELECT * FROM "QsAndAs"`;
+    const queryText = `SELECT * FROM "QsAndAs" ORDER BY RANDOM()`;
     pool.query(queryText)
       .then(data => {
         res.locals.qsAndAs = data.rows;
