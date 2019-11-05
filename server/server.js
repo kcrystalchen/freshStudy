@@ -14,15 +14,15 @@ app.get('/', (res, req) => {
     res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'))
 });
 
-// get questions request 
+// // get questions request 
 app.get('/questions', databaseController.getQuestions, (req, res) => {
-
+    res.json(res.locals.qsAndAs);
 });
 
-// post answers request
-app.post('/questions', databaseController.postAnswers, (req, res) => {
+// // post answers request
+// app.post('/questions', databaseController.postAnswers, (req, res) => {
 
-});
+// });
 
 
 
