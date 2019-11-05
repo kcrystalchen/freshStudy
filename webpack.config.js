@@ -1,17 +1,17 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-    entry: "./client/index.js",
+    entry: './client/index.js',
     output: {
-        path: path.resolve(__dirname, "build"),
-        publicPath: "/",
-        filename: "bundle.js"
+        path: path.resolve(__dirname, 'build'),
+        publicPath: '/',
+        filename: "bundle.js",
     },
     mode: process.env.NODE_ENV,
     devServer: {
-        contentBase: path.join(__dirname, "./client/assets"),
-        publicPath: "/build/",
-        historyApiFallback: true
+        contentBase: path.join(__dirname, './client/assets'),
+        publicPath: '/build/',
+        historyApiFallback: true,
     },
     module: {
         rules: [
