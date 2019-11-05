@@ -1,0 +1,25 @@
+{
+  "name": "freshstudy",
+  "version": "1.0.0",
+  "description": "freshstudy",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "pg": "^7.12.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-spring": "^8.0.27"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "freshStudy Group Inc.",
+  "license": "MIT"
+}
