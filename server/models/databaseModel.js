@@ -1,3 +1,7 @@
+require('dotenv').config();
+
+console.log(process.env.DB_USER)
+
 const { Pool, Client } = require('pg');
 const connectionString = '';
 
