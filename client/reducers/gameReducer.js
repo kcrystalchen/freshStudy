@@ -7,9 +7,8 @@ const initialState = {
   },
   game: {
     isActive: false,
+    activeQuestionIndex: 0,
     numCorrectAnswers: 0,
-    numRemainingQuestions: 0,
-    numSkippedQuestions: 0,
   },
 };
 
