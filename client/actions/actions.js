@@ -12,3 +12,8 @@ export const startNewGame = () => dispatch => {
     })
     .catch(console.error);
 };
+
+export const attemptAnswer = isCorrect => ({
+  type: types.ATTEMPT_ANSWER,
+  payload: isCorrect,
+});
