@@ -6,7 +6,6 @@ import PlayAgainScreen from '../components/PlayAgainScreen';
 
 const mapStateToProps = ({ game }) => ({
   isPlaying: game.isPlaying,
-  cards: game.cards,
 });
 
 const mapDispatchToProps = dispatch => ({

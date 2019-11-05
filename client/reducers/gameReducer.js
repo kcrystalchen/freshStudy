@@ -2,7 +2,7 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   isPlaying: false,
-  activeQuestionIndex: 0,
+  activeCardIndex: 0,
   numCorrectAnswers: 0,
   cards: [],
 };
@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
     case types.START_NEW_GAME:
       return {
         isPlaying: true,
-        activeQuestionIndex: 0,
+        activeCardIndex: 0,
         numCorrectAnswers: 0,
         cards: action.payload,
       };
