@@ -5,13 +5,17 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build'),
         publicPath: '/',
-        filename: "bundle.js",
+        filename: 'bundle.js',
     },
     mode: process.env.NODE_ENV,
     devServer: {
-        contentBase: path.join(__dirname, './client/assets'),
-        publicPath: '/build/',
+        contentBase: path.resolve(__dirname, './client/assets'),
+        compress: true,
+        publicPath: 'http://localhost:8080/build/',
         historyApiFallback: true,
+        proxy: {
+          '/': 'http://localhost:3000',
+        },
     },
     module: {
         rules: [

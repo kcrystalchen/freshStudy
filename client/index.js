@@ -5,8 +5,8 @@ import store from './store';
 import './assets/styles/styles.scss';
 
 render(
-  // <Provider store={store}>
+  <Provider store={store}>
     <App />,
-  // </Provider>,
+  </Provider>,
   document.getElementById('root')
 );

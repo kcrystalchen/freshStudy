@@ -2,15 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions.js';
 
-// const mapStateToProps = ({
-  // 
-// }) => ({
-  // 
-// });
+const mapStateToProps = ({
+  game: { isActive, activeQuestionIndex, numCorrectAnswers, cards },
+}) => ({
+  isActive,
+  activeQuestionIndex,
+  numCorrectAnswers,
+  cards,
+});
 
-// const mapDispatchToProps = dispatch => ({
-  // 
-// });
+const mapDispatchToProps = dispatch => ({
+  startNewGame: () => dispatch(actions.startNewGame()),
+});
 
 const MainContainer = props => (
   <div className="container">
@@ -18,5 +21,4 @@ const MainContainer = props => (
   </div>
 );
 
-// export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
-export default MainContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
