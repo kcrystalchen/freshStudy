@@ -10,7 +10,6 @@ app.use(bodyParser.json());
 
 // // get questions request 
 app.get('/questions', databaseController.getQuestions, (req, res) => {
-  console.log(res.locals.qsAndAs);
   res.json(res.locals.qsAndAs);
 });
 
