@@ -9,7 +9,7 @@ module.exports = {
         next();
       })
       .catch(err => {
-        next({ err });
+        next({ log: `Error in getting questions, ${err}`, message: `Server could not get questions` });
       })
   }
 }
