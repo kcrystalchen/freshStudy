@@ -8,7 +8,9 @@ const databaseController = require('./controllers/databaseController');
 
 app.use(bodyParser.json());
 
-app.use('/', express.static(path.resolve(__dirname, '../client/assets')));
+app.use('/', (req, res) => {
+  return res.sendFile(path.resolve(__dirname, '../client/index.html'));
+});
 
 // // get questions request 
 app.get('/questions', databaseController.getQuestions, (req, res) => {

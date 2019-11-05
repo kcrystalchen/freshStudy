@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
 
 const MainContainer = props => (
   <div className="container">
-    Fresh Study
+    <p>Fresh Study</p>
   </div>
 );
 
