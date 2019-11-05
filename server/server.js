@@ -14,15 +14,15 @@ app.get('/', (res, req) => {
     res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'))
 });
 
-// get questions request 
+// // get questions request 
 app.get('/questions', databaseController.getQuestions, (req, res) => {
-
+    res.json(res.locals.qsAndAs);
 });
 
-// post answers request
-app.post('/questions', databaseController.postAnswers, (req, res) => {
+// // post answers request
+// app.post('/questions', databaseController.postAnswers, (req, res) => {
 
-});
+// });
 
 
 
@@ -31,7 +31,13 @@ app.use('*', (req, res, next) => {
 });
 
 app.use((error, req, res, next) => {
-    res.status(500).send('Global error handler triggered')
+    const defaultErr = {
+        log: 'Express error handler caught unknown middleware error',
+        message: 'Error in server occurred'
+    }
+    const errorObj = Object.assign(defaultErr, error);
+    console.error(defaultErr.log);
+    res.status(500).send(errorObj.message)
 });
 
 app.listen(PORT, () => {
