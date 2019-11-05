@@ -8,13 +8,10 @@ const databaseController = require('./controllers/databaseController');
 
 app.use(bodyParser.json());
 
-app.use('/', (req, res) => {
-  return res.sendFile(path.resolve(__dirname, '../client/index.html'));
-});
-
 // // get questions request 
 app.get('/questions', databaseController.getQuestions, (req, res) => {
-    res.json(res.locals.qsAndAs);
+  console.log(res.locals.qsAndAs);
+  res.json(res.locals.qsAndAs);
 });
 
 // // post answers request
@@ -22,7 +19,9 @@ app.get('/questions', databaseController.getQuestions, (req, res) => {
 
 // });
 
-
+app.get('/', (req, res) => {
+  return res.sendFile(path.resolve(__dirname, '../client/index.html'));
+});
 
 app.use('*', (req, res, next) => {
     res.status(404).send('File is not found, Route is wrong')
