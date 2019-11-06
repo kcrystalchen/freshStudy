@@ -1,4 +1,4 @@
-import * as types from '../constants/actionTypes';
+import * as types from '../constants/gameActionTypes';
 
 export const startNewGame = () => dispatch => {
   fetch('/questions')

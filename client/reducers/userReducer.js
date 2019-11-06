@@ -1,4 +1,4 @@
-import * as types from '../constants/actionTypes';
+import * as types from '../constants/userActionTypes';
 
 const initialState = {
   user: {
@@ -10,6 +10,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+
   switch (action.type) {
     default:
       return state;

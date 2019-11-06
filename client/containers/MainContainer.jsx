@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/actions.js';
+import * as actions from '../actions';
 import GameContainer from './GameContainer';
 import LandingPage from '../components/LandingPage';
 
