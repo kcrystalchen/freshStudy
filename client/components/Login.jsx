@@ -6,14 +6,22 @@ export default ({
 }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (username && password) login(username, password);
+  };
   return (
     <div>
-    <label>Username</label>
-    <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
-    <label>Password</label>
-    <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-    <button type="submit" onClick={() => login(username, password)}>Login here!</button>
-    <button type="button" onClick={handleToggle}>Create Account Here!</button>
+      <form id="login" onSubmit={handleSubmit}>
+        <label>Username
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+        </label>
+        <label>Password
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        </label>
+        <input type="submit" value="Login" />
+      </form>
+      <button type="button" onClick={handleToggle}>Create Account Here!</button>
     </div>
   );
 };
