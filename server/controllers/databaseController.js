@@ -6,10 +6,13 @@ module.exports = {
     pool.query(queryText)
       .then(data => {
         res.locals.qsAndAs = data.rows;
-        next();
+        return next();
       })
-      .catch(err => {
-        next({ log: `Error in getting questions, ${err}`, message: `Server could not get questions` });
-      })
+      .catch(err => 
+        next({ log: `Error in getting questions, ${err}`, message: `Server could not get questions` })
+      )
+  },
+  insertResults(req, res, next) {
+
   }
 }

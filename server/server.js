@@ -8,15 +8,24 @@ const databaseController = require('./controllers/databaseController');
 
 app.use(bodyParser.json());
 
-// // get questions request 
+// get questions request 
 app.get('/questions', databaseController.getQuestions, (req, res) => {
   res.json(res.locals.qsAndAs);
 });
 
-// // post answers request
-// app.post('/questions', databaseController.postAnswers, (req, res) => {
+// post answers request
+// app.post('/results', databaseController.insertResults, (req, res) => {
 
 // });
+
+app.post('/register', authController.createUser, (req, res) => {
+    // sending back username, email
+    res.json(res.locals.newUser);
+});
+
+app.post('/login', (req, res) => {
+
+})
 
 app.get('/', (req, res) => {
   return res.sendFile(path.resolve(__dirname, '../client/index.html'));
