@@ -23,8 +23,9 @@ app.post('/register', authController.createUser, (req, res) => {
     res.json(res.locals.newUser);
 });
 
-app.post('/login', (req, res) => {
-
+// send back game history
+app.post('/login', authController.verifyUser, (req, res) => {
+    res.json(res.locals.isValidUser);
 })
 
 app.get('/', (req, res) => {

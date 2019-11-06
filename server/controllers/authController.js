@@ -24,6 +24,23 @@ module.exports = {
         })
       })
     })
-    // return next();
+  },
+  verifyUser(req, res, next) {
+    const { username, password } = req.body;
+    const queryText = `SELECT password FROM "Users" WHERE username=$1`;
+    const value = [username]
+    pool.query(queryText, value, (err, dbResponse) => {
+      if(err) {
+        return next({log: `Error in verifying user, getting user data, ${err}`, message: `Could not verify password`})
+      }
+      const hash = dbResponse.rows[0].password;
+      bcrypt.compare(password, hash, (err, isValidUser) => {
+        if(err) {
+          return next({log: `Error in verifying user, ${err}`, message: `Could not verify password`})
+        }
+        res.locals.isValidUser = isValidUser;
+        return next();
+      })
+    })
   }
 }
