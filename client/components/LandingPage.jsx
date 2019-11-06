@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Login from './Login';
 import Signup from './Signup';
+import NewGamePrompt from './NewGamePrompt';
 
 export default ({
   startNewGame,
@@ -15,7 +16,7 @@ export default ({
   const handleToggle = () => setViewToggle(status => !status);
   return (
     <div>
-      <button type="button" onClick={startNewGame}>Start new game?</button>
+      <NewGamePrompt startNewGame={startNewGame} />
       {(viewToggle
         ? <Login
             login={login}
