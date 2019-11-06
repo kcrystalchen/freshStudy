@@ -30,7 +30,9 @@ const MainContainer = ({
 }) => (
   <div className="container">
     {(isPlaying === true
-      ? <GameContainer />
+      ? <GameContainer
+          startNewGame={startNewGame}
+        />
       : <LandingPage
           startNewGame={startNewGame}
           user={user}
