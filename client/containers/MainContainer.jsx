@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions.js';
 import GameContainer from './GameContainer';
-import PlayAgainScreen from '../components/PlayAgainScreen';
+import LandingPage from '../components/LandingPage';
 
 const mapStateToProps = ({ game }) => ({
   isPlaying: game.isPlaying,
@@ -12,11 +12,11 @@ const mapDispatchToProps = dispatch => ({
   startNewGame: () => dispatch(actions.startNewGame()),
 });
 
-const MainContainer = ({ isPlaying, startNewGame, cards }) => (
+const MainContainer = ({ isPlaying, startNewGame }) => (
   <div className="container">
     {(isPlaying === true
-      ? <GameContainer cards={cards}/>
-      : <PlayAgainScreen startNewGame={startNewGame}/>
+      ? <GameContainer />
+      : <LandingPage startNewGame={startNewGame}/>
     )}
   </div>
 );
