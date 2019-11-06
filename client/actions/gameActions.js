@@ -14,7 +14,3 @@ export const attemptAnswer = isCorrect => ({
   type: types.ATTEMPT_ANSWER,
   payload: isCorrect,
 });
-
-// export const attemptLogin = ({ username, password }) => dispatch => {
-
-// };

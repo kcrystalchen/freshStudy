@@ -10,6 +10,10 @@ export default ({
   attemptAnswer,
   startNewGame,
 }) => {
+  const handleAttempt = answer => {
+    const correct = answer === cards[activeCardIndex].correctAns;
+    return attemptAnswer(handleAttempt);
+  };
   let wrongAnswers;
   if (!isGameOver) {
     wrongAnswers = [cards[activeCardIndex].ans_one];
@@ -27,7 +31,7 @@ export default ({
             question={cards[activeCardIndex].question}
             correctAns={cards[activeCardIndex].ans_correct}
             wrongAnswers={wrongAnswers}
-            attemptAnswer={attemptAnswer}
+            handleAttempt={handleAttempt}
           />
       )}
       <p>You have answered {numCorrectAnswers} questions correctly.</p>
