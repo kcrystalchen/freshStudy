@@ -1,6 +1,8 @@
 import io from 'socket.io-client';
 
-const socket = io('ws://localhost:3000', {transports: ['websocket']});
+const socket = io('ws://localhost:3000',
+  { transports: ['websocket'] }
+);
 
 socket.on('answer', msg => {
   console.log(msg);
