@@ -4,4 +4,5 @@ import user from './userReducer';
 
 export default combineReducers({
   game,
+  user,
 });
