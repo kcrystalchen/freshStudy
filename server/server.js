@@ -21,16 +21,19 @@ app.get('/questions', databaseController.getQuestions, (req, res) => {
 
 app.post('/register', authController.createUser, authController.setCookie, authController.setSession, (req, res) => {
     // sending back username, email
-    res.json(res.locals.newUser);
+    res.json(res.locals.userData);
     // maybe res.redirect('/mainpage');
 });
 
 // send back game history
 app.post('/login', authController.verifyUser, authController.setCookie, authController.setSession, (req, res) => {
-    res.json(res.locals.isValidUser);
+    if(res.locals.isValidUser) {
+        res.status(200).json(res.locals.userData)
+    } else {
+        res.status(201).json(res.locals.userData);
+    }
 });
 
-// send back game history
 app.get('/verify', authController.verifySession, (req, res) => {
     res.json(res.locals.verifyUser);
 });
