@@ -33,6 +33,7 @@ module.exports = {
       if(err) {
         return next({log: `Error in verifying user, getting user data, ${err}`, message: `Could not verify password`})
       }
+      // when input username is not found, rows should be empty array
       if(dbResponse.rows.length === 0) {
         res.locals.isValidUser = false;
         return next();
