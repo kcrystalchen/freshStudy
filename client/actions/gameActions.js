@@ -3,13 +3,10 @@ import * as types from '../constants/gameActionTypes';
 export const startNewGame = () => dispatch => {
   fetch('/questions')
     .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      dispatch({
-        type: types.START_NEW_GAME,
-        payload: data,
-      });
-    })
+    .then(data => dispatch({
+      type: types.START_NEW_GAME,
+      payload: data,
+    }))
     .catch(console.error);
 };
 
