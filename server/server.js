@@ -21,7 +21,7 @@ app.get('/questions', databaseController.getQuestions, (req, res) => {
 
 app.post('/register', authController.createUser, authController.setCookie, authController.setSession, (req, res) => {
     // sending back username, email
-    res.json(res.locals.newUser);
+    res.json(res.locals.userData);
     // maybe res.redirect('/mainpage');
 });
 
