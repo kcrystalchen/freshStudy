@@ -3,7 +3,9 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   user: {
     isLoggedIn: false,
-    username: '',
+    isLoading: false,
+    isError: false,
+    user: { },
   },
 };
 
