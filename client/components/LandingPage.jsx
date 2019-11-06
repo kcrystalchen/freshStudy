@@ -16,19 +16,25 @@ export default ({
   const handleToggle = () => setViewToggle(status => !status);
   return (
     <div>
-      <NewGamePrompt startNewGame={startNewGame} />
-      {(viewToggle
-        ? <Login
-            login={login}
-            handleToggle={handleToggle}
-          />
-        : <Signup
-            register={register}
-            handleToggle={handleToggle}
-          />
-      )}
-      {isLoading && 'isLoading'}
-      {isError && 'isError'}
+      <NewGamePrompt
+        startNewGame={startNewGame}
+        isLoggedIn={isLoggedIn}
+      />
+      <div>
+        {!isLoggedIn && (viewToggle
+          ? <Login
+              login={login}
+              handleToggle={handleToggle}
+            />
+          : <Signup
+              register={register}
+              handleToggle={handleToggle}
+            />
+        )}
+        {isLoading && 'isLoading'}
+        {isError && 'isError'}
+        {isLoggedIn && `Welcome ${user.username}!`}
+      </div>
     </div>
   )
 };

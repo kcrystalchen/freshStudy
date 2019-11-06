@@ -9,6 +9,8 @@ export default ({
   numCorrectAnswers,
   attemptAnswer,
   startNewGame,
+  user,
+  isLoggedIn,
 }) => {
   let wrongAnswers;
   if (!isGameOver) {
@@ -20,6 +22,7 @@ export default ({
   }
   return (
     <div>
+      {isLoggedIn ? user.username : 'Guest'}
       {(isGameOver
         ? (<><p>Game over!</p><NewGamePrompt startNewGame={startNewGame} /></>)
         : <Card
