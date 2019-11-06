@@ -1,20 +1,36 @@
 import React from 'react';
 import Card from './Card';
+import NewGamePrompt from './NewGamePrompt';
 
-export default ({ activeCardIndex, cards, isGameOver, numCorrectAnswers, attemptAnswer }) => (
-  <div>
-    {(isGameOver
-      ? <p>Game over!</p>
-      : <Card
-          key={cards[activeCardIndex].id}
-          question={cards[activeCardIndex].question}
-          correctAns={cards[activeCardIndex].ans_correct}
-          wrongAns1={cards[activeCardIndex].ans_one}
-          wrongAns2={cards[activeCardIndex].ans_two}
-          wrongAns3={cards[activeCardIndex].ans_three}
-          attemptAnswer={attemptAnswer}
-        />
-    )}
-    <p>You have answered {numCorrectAnswers} questions correctly.</p>
-  </div>
-);
+export default ({
+  activeCardIndex,
+  cards,
+  isGameOver,
+  numCorrectAnswers,
+  attemptAnswer,
+  startNewGame,
+}) => {
+  let wrongAnswers;
+  if (!isGameOver) {
+    wrongAnswers = [cards[activeCardIndex].ans_one];
+    if (cards[activeCardIndex].ans_two) {
+      wrongAnswers.push(cards[activeCardIndex].ans_two);
+      if (cards[activeCardIndex].ans_three) wrongAnswers.push(cards[activeCardIndex].ans_three);
+    }
+  }
+  return (
+    <div>
+      {(isGameOver
+        ? (<><p>Game over!</p><NewGamePrompt startNewGame={startNewGame} /></>)
+        : <Card
+            key={cards[activeCardIndex].id}
+            question={cards[activeCardIndex].question}
+            correctAns={cards[activeCardIndex].ans_correct}
+            wrongAnswers={wrongAnswers}
+            attemptAnswer={attemptAnswer}
+          />
+      )}
+      <p>You have answered {numCorrectAnswers} questions correctly.</p>
+    </div>
+  );
+};
