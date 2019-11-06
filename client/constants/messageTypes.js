@@ -1,5 +1,5 @@
 const messageTypes = { };
 
-messageTypes.ANSWER = 'ANSWER';
+messageTypes.ANSWER = 'answer';
 
 export default messageTypes;

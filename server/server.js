@@ -45,8 +45,9 @@ app.get('/', (req, res) => {
 
 io.on('connection', socket => {
   console.log('user connected');
-  io.emit('message', 'hello');
   socket.on('answer', data => {
+    if (data.payload) socket.broadcast.emit('answer', 'OTHER PLAYER RIGHT');
+    else socket.broadcast.emit('answer', 'OTHER PLAYER WRONG');
     console.log(data);
   });
 });
