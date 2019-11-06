@@ -32,6 +32,8 @@ const MainContainer = ({
     {(isPlaying === true
       ? <GameContainer
           startNewGame={startNewGame}
+          user={user}
+          isLoggedIn={isLoggedIn}
         />
       : <LandingPage
           startNewGame={startNewGame}
