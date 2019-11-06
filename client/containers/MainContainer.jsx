@@ -1,23 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions.js';
+import GameContainer from './GameContainer';
+import PlayAgainScreen from '../components/PlayAgainScreen';
 
-const mapStateToProps = ({
-  game: { isActive, activeQuestionIndex, numCorrectAnswers, cards },
-}) => ({
-  isActive,
-  activeQuestionIndex,
-  numCorrectAnswers,
-  cards,
+const mapStateToProps = ({ game }) => ({
+  isPlaying: game.isPlaying,
+  cards: game.cards,
 });
 
 const mapDispatchToProps = dispatch => ({
   startNewGame: () => dispatch(actions.startNewGame()),
 });
 
-const MainContainer = props => (
+const MainContainer = ({ isPlaying, startNewGame, cards }) => (
   <div className="container">
-    Fresh Study
+    {(isPlaying === true
+      ? <GameContainer cards={cards}/>
+      : <PlayAgainScreen startNewGame={startNewGame}/>
+    )}
   </div>
 );
 

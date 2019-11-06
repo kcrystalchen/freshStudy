@@ -8,20 +8,36 @@ const authController = require('./controllers/authController');
 const databaseController = require('./controllers/databaseController');
 
 app.use(bodyParser.json());
-
-app.use(express.static(path.resolve(__dirname, '../client/assets')));
-
-// // get questions request 
+app.use(cookieParser());
+// get questions request 
 app.get('/questions', databaseController.getQuestions, (req, res) => {
     res.json(res.locals.qsAndAs);
 });
 
-// // post answers request
-// app.post('/questions', databaseController.postAnswers, (req, res) => {
+// post answers request
+// app.post('/results', databaseController.insertResults, (req, res) => {
 
 // });
 
+app.post('/register', authController.createUser, authController.setCookie, authController.setSession, (req, res) => {
+    // sending back username, email
+    res.json(res.locals.newUser);
+    // maybe res.redirect('/mainpage');
+});
 
+// send back game history
+app.post('/login', authController.verifyUser, authController.setCookie, authController.setSession, (req, res) => {
+    res.json(res.locals.isValidUser);
+});
+
+// send back game history
+app.get('/verify', authController.verifySession, (req, res) => {
+    res.json(res.locals.verifyUser);
+});
+
+app.get('/', (req, res) => {
+    return res.sendFile(path.resolve(__dirname, '../client/index.html'));
+});
 
 app.use('*', (req, res, next) => {
     res.status(404).send('File is not found, Route is wrong')
