@@ -3,12 +3,13 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const authController = require('./controllers/authController');
 const databaseController = require('./controllers/databaseController');
 
 app.use(bodyParser.json());
 
-app.use('/', express.static(path.resolve(__dirname, '../client/assets')));
+app.use(express.static(path.resolve(__dirname, '../client/assets')));
 
 // // get questions request 
 app.get('/questions', databaseController.getQuestions, (req, res) => {
