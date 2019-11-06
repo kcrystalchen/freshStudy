@@ -1,23 +1,45 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/actions.js';
+import * as actions from '../actions';
 import GameContainer from './GameContainer';
-import PlayAgainScreen from '../components/PlayAgainScreen';
+import LandingPage from '../components/LandingPage';
 
-const mapStateToProps = ({ game }) => ({
+const mapStateToProps = ({ game, user }) => ({
   isPlaying: game.isPlaying,
-  cards: game.cards,
+  user: user.userData,
+  isLoggedIn: user.isLoggedIn,
+  isLoading: user.isLoading,
+  isError: user.isError,
 });
 
 const mapDispatchToProps = dispatch => ({
   startNewGame: () => dispatch(actions.startNewGame()),
+  login: (username, password) => dispatch(actions.login(username, password)),
+  register: newUserData => dispatch(actions.register(newUserData)),
 });
 
-const MainContainer = ({ isPlaying, startNewGame, cards }) => (
+const MainContainer = ({
+  isPlaying,
+  startNewGame,
+  user,
+  isLoggedIn,
+  isLoading,
+  isError,
+  login,
+  register,
+}) => (
   <div className="container">
     {(isPlaying === true
-      ? <GameContainer cards={cards}/>
-      : <PlayAgainScreen startNewGame={startNewGame}/>
+      ? <GameContainer />
+      : <LandingPage
+          startNewGame={startNewGame}
+          user={user}
+          isLoggedIn={isLoggedIn}
+          isLoading={isLoading}
+          isError={isError}
+          login={login}
+          register={register}
+        />
     )}
   </div>
 );
