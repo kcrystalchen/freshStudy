@@ -27,8 +27,8 @@ const queryString = `
   );
   CREATE TABLE IF NOT EXISTS "Sessions" (
     "id" serial NOT NULL,
+    "session_id" varchar(255) NOT NULL,
     "user_id" integer NOT NULL,
-    "cookie_id" varchar(255) NOT NULL,
     CONSTRAINT "Sessions_pk" PRIMARY KEY ("id")
   );
   `
