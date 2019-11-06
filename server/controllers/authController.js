@@ -108,29 +108,27 @@ const verifySession = (req, res, next) => {
 
     pool.query(querySessions, [userCookiesFromBrowser], (error, responses) => {
         if (error) {
-            return next(error);
+            return next({log: `Error in verifySession, query DB for session, ${error}`, message: `Error in login`});
         }
+        res.locals.verifyUser = false;
         console.log("sessionId from database", responses.rows[0]["session_id"], responses.rows[0]["user_id"]);
         const session_IdFromDatabase = responses.rows[0]["session_id"];
-
         // console.log("From Sessions table userId", user_idFromSessionTable, "session_id", session_idFromSessionTable);
 
         if (userCookiesFromBrowser === session_IdFromDatabase) {
 
             const userInfoFromDatabase = `SELECT * FROM "Users" WHERE id = (SELECT "user_id" from "Sessions" WHERE "session_id" = $1)`
 
-            pool.query(userInfoFromDatabase, [session_IdFromDatabase], (error, responses) => {
+            pool.query(userInfoFromDatabase, [session_IdFromDatabase], (error, response) => {
                 if (error) {
-                    return next(error);
+                    return next({log: `Error in verifySession, query DB for users with sessionId, ${error}`, message: `Error in login`});
                 }
-                res.locals.verifyUser = responses.rows[0];
+                const { id, email, username } = response.rows[0];
+                res.locals.verifyUser = { id, username, email };
                 return next();
             })
-        } else {
-            res.locals.verifyUser = false;
-            console.log("verifySession error from middleware");
-            return next();
-        }
+        }   
+        return next();
     });
 };
 
