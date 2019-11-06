@@ -21,7 +21,6 @@ const createUser = (req, res, next) => {
                 if (err) {
                     return next({ log: `Error saving new user data, ${err}`, message: `Could not save password` });
                 }
-                console.log('createUser res.locals info', response.rows[0]);
                 const { id, username, email } = response.rows[0];
                 res.locals.newUser = { id, username, email };
                 return next();
@@ -32,32 +31,41 @@ const createUser = (req, res, next) => {
 
 
 const verifyUser = (req, res, next) => {
-    console.log("verifyUser req.body in middleware", req.body);
     const { username, password } = req.body;
-    const queryText = `SELECT password FROM "Users" WHERE username=$1`;
+    const queryText = `SELECT * FROM "Users" WHERE username=$1`;
     const value = [username];
     pool.query(queryText, value, (err, dbResponse) => {
-        if (err) {
-            return next({ log: `Error in verifying user, getting user data, ${err}`, message: `Could not verify password` })
+        if(err) {
+            return next({log: `Error in verifying user, getting user data, ${err}`, message: `Could not verify password`})
+        }
+        // when input username is not found, rows should be empty array
+        res.locals.userData = false;
+        if(dbResponse.rows.length === 0) {
+            return next();
         }
         const hash = dbResponse.rows[0].password;
-        console.log("hash", username)
+        const { id, username, email } = dbResponse.rows[0];
         bcrypt.compare(password, hash, (err, isValidUser) => {
             if (err) {
                 return next({ log: `Error in verifying user, ${err}`, message: `Could not verify password` })
             }
-            res.locals.isValidUser = isValidUser;
-            console.log("ValidUser in middleware", res.locals.isValidUser);
-            return next();
+            if(isValidUser) {
+                res.locals.userData = { id, username, email };
+                console.log("ValidUser in middleware", res.locals.isValidUser);
+                return next();
+            }
         })
-    })
+    })   
 };
 
 // setup uuidv4 cookie
 const setCookie = (req, res, next) => {
-    res.locals.sessionId = uuidv4();
-    console.log('Middleware setCookie res.locals.sessionId ', res.locals.sessionId);
-    res.cookie('ssid', res.locals.sessionId, { httpOnly: true, expires: new Date(Date.now() + 90000) });
+    if(res.locals.newUser || res.locals.userData) {
+        res.locals.sessionId = uuidv4();
+        console.log('Middleware setCookie res.locals.sessionId ', res.locals.sessionId);
+        res.cookie('ssid', res.locals.sessionId, { httpOnly: true, expires: new Date(Date.now() + 90000) });
+        return next();
+    }
     return next();
 };
 
@@ -65,13 +73,15 @@ const setCookie = (req, res, next) => {
 // create a session middleware
 const setSession = (req, res, next) => {
     console.log('Middleware setsession res.locals.sessionId', res.locals.sessionId);
-
-    const user_id = res.locals.newUser["id"];
-    const session_id = res.locals.sessionId;
-
+    if(!res.locals.sessionId) {
+        return next();
+    }
+    const userId = res.locals.userData.id;
+    const sessionId = res.locals.sessionId;
     const queryForInsertSession = `INSERT INTO "Sessions" ("user_id", "session_id") VALUES ($1, $2);`;
-
-    pool.query(queryForInsertSession, [user_id, session_id], (error, results) => {
+    console.log('in setSession..............')
+    
+    pool.query(queryForInsertSession, [userId, sessionId], (error, results) => {
         if (error) {
             console.log("error Insert Session table", error);
             return next(error);
@@ -98,29 +108,27 @@ const verifySession = (req, res, next) => {
 
     pool.query(querySessions, [userCookiesFromBrowser], (error, responses) => {
         if (error) {
-            return next(error);
+            return next({log: `Error in verifySession, query DB for session, ${error}`, message: `Error in login`});
         }
+        res.locals.verifyUser = false;
         console.log("sessionId from database", responses.rows[0]["session_id"], responses.rows[0]["user_id"]);
         const session_IdFromDatabase = responses.rows[0]["session_id"];
-
         // console.log("From Sessions table userId", user_idFromSessionTable, "session_id", session_idFromSessionTable);
 
         if (userCookiesFromBrowser === session_IdFromDatabase) {
 
             const userInfoFromDatabase = `SELECT * FROM "Users" WHERE id = (SELECT "user_id" from "Sessions" WHERE "session_id" = $1)`
 
-            pool.query(userInfoFromDatabase, [session_IdFromDatabase], (error, responses) => {
+            pool.query(userInfoFromDatabase, [session_IdFromDatabase], (error, response) => {
                 if (error) {
-                    return next(error);
+                    return next({log: `Error in verifySession, query DB for users with sessionId, ${error}`, message: `Error in login`});
                 }
-                res.locals.verifyUser = responses.rows[0];
+                const { id, email, username } = response.rows[0];
+                res.locals.verifyUser = { id, username, email };
                 return next();
             })
-        } else {
-            res.locals.verifyUser = false;
-            console.log("verifySession error from middleware");
-            return next();
-        }
+        }   
+        return next();
     });
 };
 

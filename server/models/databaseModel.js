@@ -25,7 +25,14 @@ const queryString = `
     "password" VARCHAR(255) NOT NULL, 
     CONSTRAINT "Users_pk" PRIMARY KEY ("id")
   );
-`
+  CREATE TABLE IF NOT EXISTS "Sessions" (
+    "id" serial NOT NULL,
+    "session_id" varchar(255) NOT NULL,
+    "user_id" integer NOT NULL,
+    CONSTRAINT "Sessions_pk" PRIMARY KEY ("id")
+  );
+  `
+  // ALTER TABLE "Sessions" ADD CONSTRAINT "Sessions_fk0" FOREIGN KEY ("user_id") REFERENCES "Users"("id");
 
 pool.query(queryString)
   .then(data => console.log('successfully created table'))
