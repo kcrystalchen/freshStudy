@@ -4,14 +4,14 @@ import Signup from './Signup';
 import NewGamePrompt from './NewGamePrompt';
 import Particles from 'react-particles-js';
 
-
 export default ({
   startNewGame,
   user,
   isLoggedIn,
-  isLoading,
   login,
   register,
+  isPaused,
+  resume,
 }) => {
   const [viewToggle, setViewToggle] = useState(true);
   const handleToggle = () => setViewToggle(status => !status);
@@ -55,10 +55,12 @@ export default ({
         }}
       />
       <div className="login_page">
-        <NewGamePrompt
-          startNewGame={startNewGame}
-          isLoggedIn={isLoggedIn}
-        />
+          <NewGamePrompt
+            startNewGame={startNewGame}
+            isLoggedIn={isLoggedIn}
+            resume={resume}
+            isPaused={isPaused}
+          />
         <div>
           {!isLoggedIn && (viewToggle
             ? <Login

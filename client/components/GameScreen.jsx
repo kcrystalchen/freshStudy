@@ -11,7 +11,6 @@ export default ({
   numCorrectAnswers,
   attemptAnswer,
   startNewGame,
-  user,
   isLoggedIn,
 }) => {
   let wrongAnswers;
@@ -72,7 +71,6 @@ export default ({
           "retina_detect": true
         }} />
     <div className="isGameOver">
-      {isLoggedIn ? user.username : 'Guest'}
       {(isGameOver
         ? (<>
             <p>Game over!</p>
