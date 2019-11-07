@@ -10,11 +10,7 @@
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-<<<<<<< HEAD
-    "express-session": "^1.17.0",
     "file-loader": "^4.2.0",
-=======
->>>>>>> webSockets3
     "path": "^0.12.7",
     "pg": "^7.12.1",
     "react": "^16.11.0",

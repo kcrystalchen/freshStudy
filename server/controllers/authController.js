@@ -1,8 +1,6 @@
 const bcrypt = require('bcryptjs');
 const uuidv4 = require('uuid/v4');
-const cookieParser = require('cookie-parser');
 const pool = require('../models/databaseModel');
-
 
 
 const createUser = (req, res, next) => {
