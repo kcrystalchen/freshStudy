@@ -39,6 +39,10 @@ app.get('/verify', authController.verifySession, (req, res) => {
     res.json(res.locals.verifyUser);
 });
 
+app.delete('/logout', authController.deleteSession, (req, res) => {
+    res.json('Delete successful')
+});
+
 app.get('/', (req, res) => {
     return res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
