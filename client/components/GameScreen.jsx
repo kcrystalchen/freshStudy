@@ -31,7 +31,7 @@ export default ({
         params={{
           "particles": {
             "number": {
-              "value": 60,
+              "value": 100,
               "density": {
                 "enable": true,
                 "value_area": 1500
@@ -39,20 +39,20 @@ export default ({
             },
             "line_linked": {
               "enable": true,
-              "opacity": 0.02
+              "opacity": 0.3
             },
             "move": {
               "direction": "right",
-              "speed": 0.05
+              "speed": 0.5
             },
             "size": {
-              "value": 1
+              "value": 1.8
             },
             "opacity": {
               "anim": {
                 "enable": true,
-                "speed": 1,
-                "opacity_min": 0.05
+                "speed": 5,
+                "opacity_min": 0.6
               }
             }
           },
@@ -65,20 +65,20 @@ export default ({
             },
             "modes": {
               "push": {
-                "particles_nb": 1
+                "particles_nb": 2
               }
             }
           },
           "retina_detect": true
         }} />
-    <div className="isGameOver">
-      {isLoggedIn ? user.username : 'Guest'}
-      {(isGameOver
-        ? (<>
+      <div className="isGameOver">
+        {isLoggedIn ? user.username : 'Guest'}
+        {(isGameOver
+          ? (<>
             <p>Game over!</p>
-            <NewGamePrompt startNewGame={startNewGame} isLoggedIn={isLoggedIn}/>
+            <NewGamePrompt startNewGame={startNewGame} isLoggedIn={isLoggedIn} />
           </>)
-        : <Card
+          : <Card
             key={cards[activeCardIndex].id}
             question={cards[activeCardIndex].question}
             correctAns={cards[activeCardIndex].ans_correct}

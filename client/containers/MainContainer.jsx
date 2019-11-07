@@ -34,22 +34,21 @@ const MainContainer = ({
 
   return (
     <div className="container">
-      {isLoading && 'Loading...'}
       {!isLoading && (
         isPlaying === true
           ? <GameContainer
-              startNewGame={startNewGame}
-              user={user}
-              isLoggedIn={isLoggedIn}
-            />
+            startNewGame={startNewGame}
+            user={user}
+            isLoggedIn={isLoggedIn}
+          />
           : <LandingPage
-              startNewGame={startNewGame}
-              user={user}
-              isLoggedIn={isLoggedIn}
-              isLoading={isLoading}
-              login={login}
-              register={register}
-            />
+            startNewGame={startNewGame}
+            user={user}
+            isLoggedIn={isLoggedIn}
+            isLoading={isLoading}
+            login={login}
+            register={register}
+          />
       )}
     </div>
   );
