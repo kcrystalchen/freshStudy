@@ -14,8 +14,8 @@ export default ({ user, isLoggedIn, logout, isPlaying, pause }) => {
       {isPlaying && !isLoggedIn
         && (
           <>
-            <div>Playing as Guest</div>
-            <button onClick={() => pause()}>Sign In</button>
+            <div className="playingAsGuestonGamePage">Playing as Guest</div>
+            <button onClick={() => pause()} className="signInGamePage">Sign In</button>
           </>
         )}
       {!isPlaying && isLoggedIn

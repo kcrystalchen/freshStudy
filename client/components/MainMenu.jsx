@@ -55,12 +55,12 @@ export default ({
         }}
       />
       <div className="login_page">
-          <NewGamePrompt
-            startNewGame={startNewGame}
-            isLoggedIn={isLoggedIn}
-            resume={resume}
-            isPaused={isPaused}
-          />
+        <NewGamePrompt
+          startNewGame={startNewGame}
+          isLoggedIn={isLoggedIn}
+          resume={resume}
+          isPaused={isPaused}
+        />
         <div>
           {!isLoggedIn && (viewToggle
             ? <Login

@@ -1,6 +1,6 @@
 $font-stack: Helvetica, sans-serif;
 $primary-color: #333;
-$primary-background-color: #020007;
+$primary-background-color: #180548;
 
 body {
   font: 100% $font-stack;
@@ -30,6 +30,7 @@ body {
   height: 600px;
   opacity: 0;
 }
+
 .gameScreen{
   background:#070117;
   width: 105%;
@@ -37,7 +38,7 @@ body {
 }
 
 .landing_page {
-  background:#180548;
+  background: $primary-background-color;
   width: 105%;
   height: 105%;
 }
@@ -58,16 +59,56 @@ body {
 }
 
 .container{
-  background: cornsilk ;
+  background: $primary-background-color ;
   // color: $primary-background-color;
 }
 
 .playAsGuest{
-  background: cornsilk;
+  background: red;
   color: $primary-background-color;
-  margin:0px 0px 40px 40px;
+  margin:60px 100px 40px 120px;
   width: 300px;
   height: 40px;
+}
+
+div#navbar-title{
+background: $primary-background-color;
+height: 50px;
+width: 1380px;
+display: flex;
+justify-content: center;
+color: greenyellow;
+font-size: 30px;
+padding-top: 25px;
+}
+div#navbar{
+  background: $primary-background-color;
+}
+
+button.playAsGuestNavBar{
+  background: cornsilk;
+  margin-left: 60px;
+  margin-bottom: 60px;
+  width: 220px;
+  height: 40px;
+
+}
+.signInGamePage{
+  background: $primary-background-color;
+  width: 100px;
+  height: 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color:greenyellow;
+  font-size: 16px;
+  margin-top: 10px;
+
+}
+
+.playingAsGuestonGamePage{
+  background: $primary-background-color;
+  color: greenyellow;
 }
 .isGameOver {
   position: absolute;
@@ -89,7 +130,7 @@ body {
   display: flex;
   flex-direction: row;
   color: cornsilk;
-  margin-left: 60px
+  margin-left: 30px
 }
 
 .startNewGameButton {
@@ -123,8 +164,8 @@ height: 20px;
 
 .createAccountBtn{
   color: $primary-background-color;
-  margin-top: 50px;
-  margin-left: 210px;
+  margin-top: 80px;
+  margin-left: 200px;
   width: 300px;
   height: 40px;
   background: cornsilk;

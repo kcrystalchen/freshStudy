@@ -21,20 +21,21 @@ export default ({
   }
 
   return (
-    <div>
+    <div className="gamePage">
+
       {(isGameOver
         ? (<>
-            <p>Game over!</p>
-            <NewGamePrompt startNewGame={startNewGame} isLoggedIn={isLoggedIn} />
-          </>)
-          : <Card
-            key={cards[activeCardIndex].id}
-            question={cards[activeCardIndex].question}
-            correctAns={cards[activeCardIndex].ans_correct}
-            wrongAnswers={wrongAnswers}
-            attemptAnswer={attemptAnswer}
-          />
-        )}
+          <p>Game over!</p>
+          <NewGamePrompt startNewGame={startNewGame} isLoggedIn={isLoggedIn} />
+        </>)
+        : <Card
+          key={cards[activeCardIndex].id}
+          question={cards[activeCardIndex].question}
+          correctAns={cards[activeCardIndex].ans_correct}
+          wrongAnswers={wrongAnswers}
+          attemptAnswer={attemptAnswer}
+        />
+      )}
       <p>You have answered {numCorrectAnswers} {numCorrectAnswers === 1 ? 'question' : 'questions'} correctly.</p>
     </div>
   );
