@@ -30,12 +30,6 @@ body {
   height: 600px;
   opacity: 0;
 }
-.gameScreen{
-  background:#250242;
-  width: 105%;
-  height: 105%;
-  color: cornsilk;
-}
 
 .landing_page {
   background: pink;
@@ -44,20 +38,6 @@ body {
 }
 
 .login_page {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-  align-items: center;
-  align-content: center;
-  height: 300px;
-}
-.isGameOver {
   position: absolute;
   top: 0;
   bottom: 0;

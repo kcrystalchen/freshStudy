@@ -5,19 +5,14 @@ import {useSpring, useTrail, animated, interpolate} from 'react-spring';
 
 export default ({ question, correctAns, wrongAnswers, attemptAnswer }) => {
   // randomize answers
-  const handleAttempt = answer => {
-    if (answer !== correctAns) return attemptAnswer(false);
-    return attemptAnswer(true);
-  }
-
   const allAnswers = wrongAnswers.concat(correctAns);
   const indices = Object.keys(allAnswers).sort(() => Math.random() - 0.5);
 
   // concat question + randomized answers for react-spring mapping
-  const cardTextArr = [question, correctAns, ...wrongAnswers];
+  const cardTextArr = [question].concat(indices.map(i => allAnswers[i]));
 
   // create a spring for each question + answers
-  const [ trail, setTrail, stopTrail ] = useTrail(indices.length, () => ({ xy: [-200, 100], o: 0}));
+  const [ trail, setTrail, stopTrail ] = useTrail(indices.length + 1, () => ({ xy: [-200, 100], o: 0}));
 
   // declare 'animationEvent' trigger
   const [ animationEvent, setAnimationEvent ] = useState('enterLeft');
@@ -25,7 +20,6 @@ export default ({ question, correctAns, wrongAnswers, attemptAnswer }) => {
   // save answerStatus (true/false) to send to parent component when spring exit animation concludes
   // make this const outside of func?
   const [ answerStatus, setAnswerStatus ] = useState(false);
-
 
   // save state of gifCurtain for the next question transition
   const [ showGif, setShowGif ] = useState('none');
@@ -42,9 +36,6 @@ export default ({ question, correctAns, wrongAnswers, attemptAnswer }) => {
       return attemptAnswer(answerStatus); 
     }
   }
-
-
-
 
   // an onClick handler that evaluates user's answer, stores the true/false result, and sets the 
   // corresponding animationEvent string.
