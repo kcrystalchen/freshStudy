@@ -5,7 +5,7 @@ export default ({ user, isLoggedIn, logout }) => {
     if(isLoggedIn) logout(isLoggedIn);
   }
   return (
-    <div>
+    <div id="navbar">
       <span>Playing as {isLoggedIn ? user.username : 'Guest'}</span>
       <button onClick={handleUserRedirect}>{isLoggedIn ? 'Log Out' : 'Sign in'}</button>
     </div>
