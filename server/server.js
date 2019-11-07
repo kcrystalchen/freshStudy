@@ -1,5 +1,6 @@
-const express = require('express');
-const app = express();
+const app = require('express')();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 const path = require('path');
 const PORT = 3000;
 const bodyParser = require('body-parser');
@@ -42,6 +43,15 @@ app.get('/', (req, res) => {
     return res.sendFile(path.resolve(__dirname, '../client/index.html'));
 });
 
+io.on('connection', socket => {
+  console.log('user connected');
+  socket.on('answer', data => {
+    if (data.payload) socket.broadcast.emit('answer', 'OTHER PLAYER RIGHT');
+    else socket.broadcast.emit('answer', 'OTHER PLAYER WRONG');
+    console.log(data);
+  });
+});
+
 app.use('*', (req, res, next) => {
     res.status(404).send('File is not found, Route is wrong')
 });
@@ -56,6 +66,6 @@ app.use((error, req, res, next) => {
     res.status(500).send(errorObj.message)
 });
 
-app.listen(PORT, () => {
+http.listen(PORT, () => {
     console.log(`Listening port ${PORT} ^0^`);
 });

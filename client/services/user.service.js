@@ -28,4 +28,13 @@ user.register = async (user) => {
   }
 }
 
+user.verify = async () => {
+  try {
+    const res = await fetch('/verify');
+    return await res.json();
+  } catch (e) {
+    return e;
+  }
+};
+
 export default user;

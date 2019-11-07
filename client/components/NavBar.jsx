@@ -6,7 +6,8 @@ export default ({ user, isLoggedIn, logout }) => {
   }
   return (
     <div id="navbar">
-      <span>Playing as {isLoggedIn ? user.username : 'Guest'}</span>
+      <div id="navbar-title">Fresh Study</div>
+      <div>Playing as {isLoggedIn ? user.username : 'Guest'}</div>
       <button onClick={handleUserRedirect}>{isLoggedIn ? 'Log Out' : 'Sign in'}</button>
     </div>
   )
