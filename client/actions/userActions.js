@@ -30,3 +30,11 @@ export const register = (newUserData) => dispatch => {
       payload: e,
     }));
 };
+
+export const logout = (isLoggedIn) => dispatch => {
+  if(isLoggedIn) {
+    dispatch({
+      type: types.LOGOUT
+    })
+  }
+}
