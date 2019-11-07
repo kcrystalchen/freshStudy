@@ -8,7 +8,6 @@ export default ({
   user,
   isLoggedIn,
   isLoading,
-  isError,
   login,
   register,
 }) => {
@@ -31,8 +30,6 @@ export default ({
               handleToggle={handleToggle}
             />
         )}
-        {isLoading && 'isLoading'}
-        {isError && 'isError'}
         {isLoggedIn && `Welcome ${user.username}!`}
       </div>
     </div>

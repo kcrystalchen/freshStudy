@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import GameContainer from './GameContainer';
@@ -9,13 +9,13 @@ const mapStateToProps = ({ game, user }) => ({
   user: user.userData,
   isLoggedIn: user.isLoggedIn,
   isLoading: user.isLoading,
-  isError: user.isError,
 });
 
 const mapDispatchToProps = dispatch => ({
   startNewGame: () => dispatch(actions.startNewGame()),
   login: (username, password) => dispatch(actions.login(username, password)),
   register: newUserData => dispatch(actions.register(newUserData)),
+  verify: () => dispatch(actions.verify()),
 });
 
 const MainContainer = ({
@@ -24,28 +24,35 @@ const MainContainer = ({
   user,
   isLoggedIn,
   isLoading,
-  isError,
   login,
   register,
-}) => (
-  <div className="container">
-    {(isPlaying === true
-      ? <GameContainer
-          startNewGame={startNewGame}
-          user={user}
-          isLoggedIn={isLoggedIn}
-        />
-      : <LandingPage
-          startNewGame={startNewGame}
-          user={user}
-          isLoggedIn={isLoggedIn}
-          isLoading={isLoading}
-          isError={isError}
-          login={login}
-          register={register}
-        />
-    )}
-  </div>
-);
+  verify,
+}) => {
+  useEffect(() => {
+    verify();
+  }, []);
+
+  return (
+    <div className="container">
+      {isLoading && 'Loading...'}
+      {!isLoading && (
+        isPlaying === true
+          ? <GameContainer
+              startNewGame={startNewGame}
+              user={user}
+              isLoggedIn={isLoggedIn}
+            />
+          : <LandingPage
+              startNewGame={startNewGame}
+              user={user}
+              isLoggedIn={isLoggedIn}
+              isLoading={isLoading}
+              login={login}
+              register={register}
+            />
+      )}
+    </div>
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
