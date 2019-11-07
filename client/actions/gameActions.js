@@ -12,6 +12,14 @@ export const startNewGame = () => dispatch => {
     .catch(console.error);
 };
 
+export const pauseGame = () => ({
+  type: types.PAUSE_GAME,
+});
+
+export const resumeGame = () => ({
+  type: types.RESUME_GAME,
+});
+
 export const attemptAnswer = emitAction(isCorrect => ({
   key: messageTypes.ANSWER,
   type: types.ATTEMPT_ANSWER,

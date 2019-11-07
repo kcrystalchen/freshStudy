@@ -1,4 +1,5 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const path = require('path');
@@ -19,6 +20,7 @@ app.get('/questions', databaseController.getQuestions, (req, res) => {
 // app.post('/results', databaseController.insertResults, (req, res) => {
 
 // });
+app.use('/assets/images', express.static(path.resolve(__dirname, '../client/assets/images')));
 
 app.post('/register', authController.createUser, authController.setCookie, authController.setSession, (req, res) => {
     // sending back username, email
@@ -37,6 +39,10 @@ app.post('/login', authController.verifyUser, authController.setCookie, authCont
 
 app.get('/verify', authController.verifySession, (req, res) => {
     res.json(res.locals.verifyUser);
+});
+
+app.delete('/logout', authController.deleteSession, (req, res) => {
+    res.json('Delete successful')
 });
 
 app.get('/', (req, res) => {

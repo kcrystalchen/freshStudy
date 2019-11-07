@@ -45,3 +45,16 @@ export const verify = () => dispatch => {
     })
     .catch(console.error);
 };
+
+export const logout = (isLoggedIn) => dispatch => {
+  if(isLoggedIn) {
+    dispatch({
+      type: types.LOGOUT
+    });
+    user.logout()
+      .then(res => {
+        console.log('session deleted from database', res);
+      })
+      .catch(console.error);
+  }
+}

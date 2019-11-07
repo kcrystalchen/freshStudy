@@ -8,6 +8,28 @@ body {
   background-color: $primary-background-color;
 }
 
+.gifCurtain {
+  position: absolute;
+  background-color: orange;
+  height: 600px;
+  width: 500px;
+}
+
+.correct {
+  position: absolute;
+  background-image: url('/assets/images/correct.gif');
+  width: 500px;
+  height: 600px;
+  opacity: 0;
+}
+
+.incorrect {
+  position: absolute;
+  background-image:url('/assets/images/incorrect.gif');
+  width: 500px;
+  height: 600px;
+  opacity: 0;
+}
 .gameScreen{
   background:#070117;
   width: 105%;
