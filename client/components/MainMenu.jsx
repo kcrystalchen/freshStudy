@@ -21,7 +21,7 @@ export default ({
         params={{
           "particles": {
             "number": {
-              "value": 100,
+              "value": 180,
               "density": {
                 "enable": true
               }
@@ -64,15 +64,17 @@ export default ({
         <div>
           {!isLoggedIn && (viewToggle
             ? <Login
-                login={login}
-                handleToggle={handleToggle}
-              />
+              login={login}
+              handleToggle={handleToggle}
+            />
             : <Signup
-                register={register}
-                handleToggle={handleToggle}
-              />
+              register={register}
+              handleToggle={handleToggle}
+            />
           )}
-          {isLoggedIn && `Welcome ${user.username}!`}
+          <div className="welcome">
+            {isLoggedIn && `Welcome ${user.username}!`}
+          </div>
         </div>
       </div>
     </div>

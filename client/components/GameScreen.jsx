@@ -25,9 +25,9 @@ export default ({
       {(isGameOver
         ? (<>
             <p>Game over!</p>
-            <NewGamePrompt startNewGame={startNewGame} isLoggedIn={isLoggedIn}/>
+            <NewGamePrompt startNewGame={startNewGame} isLoggedIn={isLoggedIn} />
           </>)
-        : <Card
+          : <Card
             key={cards[activeCardIndex].id}
             question={cards[activeCardIndex].question}
             correctAns={cards[activeCardIndex].ans_correct}

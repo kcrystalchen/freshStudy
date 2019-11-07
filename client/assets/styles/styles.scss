@@ -1,6 +1,6 @@
 $font-stack: Helvetica, sans-serif;
 $primary-color: #333;
-$primary-background-color: #250242;
+$primary-background-color: #020007;
 
 body {
   font: 100% $font-stack;
@@ -30,9 +30,14 @@ body {
   height: 600px;
   opacity: 0;
 }
+.gameScreen{
+  background:#070117;
+  width: 105%;
+  height: 105%;
+}
 
 .landing_page {
-  background: pink;
+  background:#180548;
   width: 105%;
   height: 105%;
 }
@@ -51,38 +56,77 @@ body {
   align-content: center;
   height: 300px;
 }
+
+.container{
+  background: cornsilk ;
+  // color: $primary-background-color;
+}
+
+.playAsGuest{
+  background: cornsilk;
+  color: $primary-background-color;
+  margin:0px 0px 40px 40px;
+  width: 300px;
+  height: 40px;
+}
+.isGameOver {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+  align-content: center;
+  height: 300px;
+  color: cornsilk;
+}
+
 .login-form{
   display: flex;
   flex-direction: row;
+  color: cornsilk;
+  margin-left: 60px
 }
 
 .startNewGameButton {
  width: 200px;
  height: 80px;
- background: rebeccapurple;
+ color:$primary-background-color;
  margin-bottom: 40px;
 }
 
 .loginUserName{
 margin-left: 10px;
 margin-right: 10px;
+color: $primary-background-color;
+width: 200px;
+height: 20px;
 }
+
 .loginPassword{
   margin-left: 10px;
   margin-right: 10px;
+  color:$primary-background-color;
+  width: 200px;
+  height: 20px;
 }
 
 .createAccountBtn{
-  background: green;
-  margin-top: 30px;
-  margin-left: 120px;
-  width: 280px;
-  height: 30px;
+  color: $primary-background-color;
+  margin-top: 50px;
+  margin-left: 220px;
+  width: 300px;
+  height: 40px;
 }
 
 #register.login-form{
   padding: 20px;
   flex: grid;
+  color: cornsilk;
 }
 .emailInput{
   margin-right: 20px;
@@ -90,32 +134,51 @@ margin-right: 10px;
   margin-top: 5px;
   width: 200px;
   height: 20px;
+  background: cornsilk;
 }
+
 .passwordInput{
   margin-right: 20px;
   margin-top: 5px;
   width: 200px;
   height: 20px;
+  background: cornsilk;
 
 }
+
 .userNameInput{
   margin-right: 15px;
   margin-top: 5px;
   width: 200px;
   height: 20px;
+  background: cornsilk;
+}
 
+.loginBtn{
+  margin-left: 30px;
+  margin-top: 15px;
+  width: 150px;
+  height: 28px;
+  background: cornsilk;
 }
 .loginHere{
-  margin: 40px 160px 0px 350px;
-  width: 200px;
+  margin: 40px 100px 0px 370px;
+  width: 300px;
   height: 40px;
   font-size: 10px;
+  color: $primary-background-color;
+  background: cornsilk;
 }
 
 .registerBtn{
-  margin-right: 20px;
+  margin-right: 80px;
   margin-top: 20px;
   width: 140px;
   height: 30px;
-  background: coral;
+  background: cornsilk;
+}
+
+.welcome{
+  color: cornsilk;
+  margin-left: 40px;
 }

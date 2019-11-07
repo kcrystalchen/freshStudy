@@ -15,7 +15,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const GameContainer = (props) => (
-  <GameScreen { ...props }/>
+  <GameScreen {...props} />
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameContainer);
