@@ -14,7 +14,7 @@ export default ({
   return (
     <div>
       <form className="login-form" id="register" onSubmit={handleSubmit}>
-        <label>Email:
+        <label>Email
           <input className="emailInput" type="text" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </label>
         <label>Username
