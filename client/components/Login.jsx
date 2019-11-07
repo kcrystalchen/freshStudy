@@ -12,16 +12,16 @@ export default ({
   };
   return (
     <div>
-      <form id="login" onSubmit={handleSubmit}>
-        <label>Username
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+      <form className="login-form" onSubmit={handleSubmit}>
+        <label className="userNameLabel">Username:
+          <input className="loginUserName" type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
         </label>
-        <label>Password
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <label className="passwordLabel">Password:
+          <input className="loginPassword" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </label>
         <input type="submit" value="Login" />
       </form>
-      <button type="button" onClick={handleToggle}>Create Account Here!</button>
+      <button className="createAccountBtn" type="button" onClick={handleToggle}>Create Account Here!</button>
     </div>
   );
 };

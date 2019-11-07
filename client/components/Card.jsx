@@ -4,7 +4,15 @@ import {useSpring, useTrail, animated, interpolate} from 'react-spring';
 
 
 export default ({ question, correctAns, wrongAnswers, attemptAnswer }) => {
+<<<<<<< HEAD
   // randomize answers
+=======
+  const handleAttempt = answer => {
+    if (answer !== correctAns) return attemptAnswer(false);
+    return attemptAnswer(true);
+  }
+
+>>>>>>> webSockets3
   const allAnswers = wrongAnswers.concat(correctAns);
   const indices = Object.keys(allAnswers).sort(() => Math.random() - 0.5);
 

@@ -1,12 +1,13 @@
 $font-stack: Helvetica, sans-serif;
 $primary-color: #333;
-$primary-background-color: #fff8dc;
+$primary-background-color: #250242;
 
 body {
   font: 100% $font-stack;
   color: $primary-color;
   background-color: $primary-background-color;
 }
+<<<<<<< HEAD
 
 
 .gifCurtain {
@@ -30,4 +31,114 @@ body {
   width: 500px;
   height: 600px;
   opacity: 0;
+=======
+.gameScreen{
+  background:#250242;
+  width: 105%;
+  height: 105%;
+  color: cornsilk;
+}
+
+.landing_page {
+  background: pink;
+  width: 105%;
+  height: 105%;
+}
+
+.login_page {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+  align-content: center;
+  height: 300px;
+}
+.isGameOver {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  align-items: center;
+  align-content: center;
+  height: 300px;
+}
+.login-form{
+  display: flex;
+  flex-direction: row;
+}
+
+.startNewGameButton {
+ width: 200px;
+ height: 80px;
+ background: rebeccapurple;
+ margin-bottom: 40px;
+}
+
+.loginUserName{
+margin-left: 10px;
+margin-right: 10px;
+}
+.loginPassword{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.createAccountBtn{
+  background: green;
+  margin-top: 30px;
+  margin-left: 120px;
+  width: 280px;
+  height: 30px;
+}
+
+#register.login-form{
+  padding: 20px;
+  flex: grid;
+}
+.emailInput{
+  margin-right: 20px;
+  padding-right: 10px;
+  margin-top: 5px;
+  width: 200px;
+  height: 20px;
+}
+.passwordInput{
+  margin-right: 20px;
+  margin-top: 5px;
+  width: 200px;
+  height: 20px;
+
+}
+.userNameInput{
+  margin-right: 15px;
+  margin-top: 5px;
+  width: 200px;
+  height: 20px;
+
+}
+.loginHere{
+  margin: 40px 160px 0px 350px;
+  width: 200px;
+  height: 40px;
+  font-size: 10px;
+}
+
+.registerBtn{
+  margin-right: 20px;
+  margin-top: 20px;
+  width: 140px;
+  height: 30px;
+  background: coral;
+>>>>>>> webSockets3
 }

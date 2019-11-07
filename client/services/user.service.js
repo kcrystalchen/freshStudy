@@ -28,4 +28,26 @@ user.register = async (user) => {
   }
 }
 
+user.verify = async () => {
+  try {
+    const res = await fetch('/verify');
+    return await res.json();
+  } catch (e) {
+    return e;
+  }
+};
+
+user.logout = async () => {
+  const options = {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' }
+  }
+  try {
+    const res = await fetch('/logout', options);
+    return await res.json();
+  } catch (e) {
+    return e;
+  }
+}
+
 export default user;
