@@ -11,6 +11,8 @@ export default ({
   numCorrectAnswers,
   attemptAnswer,
   startNewGame,
+  user,
+  isLoggedIn,
 }) => {
   let wrongAnswers;
   if (!isGameOver) {
@@ -69,11 +71,14 @@ export default ({
           },
           "retina_detect": true
         }} />
-
-      <div className="isGameOver">
-        {(isGameOver
-          ? (<><p>Game over!</p><NewGamePrompt startNewGame={startNewGame} /></>)
-          : <Card
+    <div className="isGameOver">
+      {isLoggedIn ? user.username : 'Guest'}
+      {(isGameOver
+        ? (<>
+            <p>Game over!</p>
+            <NewGamePrompt startNewGame={startNewGame} isLoggedIn={isLoggedIn}/>
+          </>)
+        : <Card
             key={cards[activeCardIndex].id}
             question={cards[activeCardIndex].question}
             correctAns={cards[activeCardIndex].ans_correct}
@@ -84,6 +89,5 @@ export default ({
         <p>You have answered {numCorrectAnswers} questions correctly.</p>
       </div>
     </div>
-
   );
 };

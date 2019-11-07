@@ -5,6 +5,7 @@ export default ({ question, correctAns, wrongAnswers, attemptAnswer }) => {
     if (answer !== correctAns) return attemptAnswer(false);
     return attemptAnswer(true);
   }
+
   const allAnswers = wrongAnswers.concat(correctAns);
   const indices = Object.keys(allAnswers).sort(() => Math.random() - 0.5);
   const randomizedAnswers = indices.map(i => (

@@ -1,4 +1,6 @@
 import * as types from '../constants/gameActionTypes';
+import messageTypes from '../constants/messageTypes';
+import emitAction from '../services/socket.service';
 
 export const startNewGame = () => dispatch => {
   fetch('/questions')
@@ -10,11 +12,8 @@ export const startNewGame = () => dispatch => {
     .catch(console.error);
 };
 
-export const attemptAnswer = isCorrect => ({
+export const attemptAnswer = emitAction(isCorrect => ({
+  key: messageTypes.ANSWER,
   type: types.ATTEMPT_ANSWER,
   payload: isCorrect,
-});
-
-// export const attemptLogin = ({ username, password }) => dispatch => {
-
-// };
+}));

@@ -10,7 +10,6 @@ export default ({
   user,
   isLoggedIn,
   isLoading,
-  isError,
   login,
   register,
 }) => {
@@ -55,23 +54,25 @@ export default ({
           }
         }}
       />
-
       <div className="login_page">
-        <NewGamePrompt startNewGame={startNewGame} />
-        {(viewToggle
-          ? <Login
-            login={login}
-            handleToggle={handleToggle}
-          />
-          : <Signup
-            register={register}
-            handleToggle={handleToggle}
-          />
-        )}
-        {isLoading && 'isLoading'}
-        {isError && 'isError'}
+        <NewGamePrompt
+          startNewGame={startNewGame}
+          isLoggedIn={isLoggedIn}
+        />
+        <div>
+          {!isLoggedIn && (viewToggle
+            ? <Login
+                login={login}
+                handleToggle={handleToggle}
+              />
+            : <Signup
+                register={register}
+                handleToggle={handleToggle}
+              />
+          )}
+          {isLoggedIn && `Welcome ${user.username}!`}
+        </div>
       </div>
     </div>
-
   )
 };
