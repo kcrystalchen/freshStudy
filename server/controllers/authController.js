@@ -1,8 +1,6 @@
 const bcrypt = require('bcryptjs');
 const uuidv4 = require('uuid/v4');
-const cookieParser = require('cookie-parser');
 const pool = require('../models/databaseModel');
-
 
 
 const createUser = (req, res, next) => {
@@ -63,7 +61,7 @@ const setCookie = (req, res, next) => {
     if(res.locals.userData) {
         res.locals.sessionId = uuidv4();
         console.log('Middleware setCookie res.locals.sessionId ', res.locals.sessionId);
-        res.cookie('ssid', res.locals.sessionId, { httpOnly: true, expires: new Date(Date.now() + 90000) });
+        res.cookie('ssid', res.locals.sessionId, { httpOnly: true, expires: new Date(Date.now() + 259200000) });
     }
     return next();
 };
