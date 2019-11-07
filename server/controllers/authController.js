@@ -91,7 +91,6 @@ const setSession = (req, res, next) => {
 
 // verify a session middleware
 const verifySession = (req, res, next) => {
-
     const userCookiesFromBrowser = req.cookies["ssid"];
 
     console.log("Middleware verifySession req.cookies", userCookiesFromBrowser);
@@ -101,16 +100,20 @@ const verifySession = (req, res, next) => {
         return next();
     }
 
-    const querySessions = `SELECT * FROM "Sessions" where session_id = $1`;
+    const queryText = `SELECT * FROM "Sessions" WHERE session_id = $1`;
 
-    pool.query(querySessions, [userCookiesFromBrowser], (error, response) => {
+    pool.query(queryText, [userCookiesFromBrowser], (error, dbResponse) => {
         if (error) {
             return next({log: `Error in verifySession, query DB for session, ${error}`, message: `Error in login`});
         }
+        const dbResArray = dbResponse.rows;
         res.locals.verifyUser = false;
-        console.log("sessionId from database", response.rows[0]["session_id"], response.rows[0]["user_id"]);
-        const userId = response.rows[0]["user_id"];
-        const session_IdFromDatabase = response.rows[0]["session_id"];
+        console.log("sessionId from database", dbResArray);
+        if(dbResArray.length === 0) {
+            return next();
+        }
+        const userId = dbResArray[0]["user_id"];
+        const session_IdFromDatabase = dbResArray[0]["session_id"];
 
         if (userCookiesFromBrowser === session_IdFromDatabase) {
 
@@ -124,9 +127,21 @@ const verifySession = (req, res, next) => {
                 res.locals.verifyUser = { id, username, email };
                 return next();
             })
-        }   
+        } 
     });
 };
+
+const deleteSession = (req, res, next) => {
+    const { ssid } = req.cookies;
+    const queryText = 'DELETE FROM "Sessions" WHERE session_id=$1';
+    pool.query(queryText, [ssid], (error, dbResponse) => {
+        if(error) {
+            return next({log: `Error in deleting session, ${error}`, message: `Error logging out`})
+        }
+        console.log('in deleteSession middleware', dbResponse);
+        return next();
+    })
+}
 
 
 module.exports = {
@@ -135,5 +150,6 @@ module.exports = {
     setCookie,
     setSession,
     verifySession,
+    deleteSession
     // sessionCheck
 };

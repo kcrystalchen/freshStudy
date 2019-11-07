@@ -30,6 +30,14 @@ export default (state = initialState, action) => {
         isLoading: false,
         userData: { },
       };
+    case types.LOGOUT: 
+      console.log('logout')
+      return {
+        isLoggedIn: false,
+        isLoading: false,
+        isError: false,
+        userData: { },
+      }
     default:
       return state;
   }
